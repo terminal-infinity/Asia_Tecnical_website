@@ -80,7 +80,17 @@ Fixed Navigation
             <a class="nav-link" href="{{ route('about') }}">About Us</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="service.html">Services</a>
+            <a class="nav-link" href="{{ route('courses') }}">Courses</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Services <i class="tf-ion-chevron-down"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="index.html">Homepage</a></li>
+              <li><a class="dropdown-item" href="onepage-slider.html">Onepage</a></li>
+              <li><a class="dropdown-item" href="onepage-text.html">Onepage 2</a></li>
+            </ul>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="notice.html">Notice</a>
@@ -97,10 +107,10 @@ Fixed Navigation
           </li>
           @else
           <li class="nav-item ">
-            <a class="nav-link" href="{{ route('login') }}">Login</a>
+            <a class="nav-link" href="{{ route('register') }}">Registresion</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="{{ route('register') }}">Registresion</a>
+            <a class="nav-link" href="{{ route('login') }}">Login</a>
           </li>
           @endauth
           @endif
@@ -121,8 +131,10 @@ Fixed Navigation
       <div class="container">
         <div class="row justify-content-around">
           <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-            <h3>about</h3>
-            <p>Integer posuere erat a ante venenati dapibus posuere velit aliquet. Fusce dapibus, tellus cursus commodo, tortor mauris sed posuere.</p>
+            <h3>Contact</h3>
+            <p>Address: 149/9/C Sha Alibagh <br>Mirpur, Bangladesh. <br>Phone: 01681-769149 <br>Mail us: asiatechnical@yahoo.com <br>
+              Saturday to Thursday, 9AM to 5PM
+              </p>
           </div>
           <!-- End of .col-sm-3 -->
   

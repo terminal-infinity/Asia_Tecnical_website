@@ -1,7 +1,7 @@
 <nav class="sidebar">
     <div class="sidebar-header">
       <a href="{{ route('admin.dashboard') }}" class="sidebar-brand">
-        Jannat<span>.Coding</span>
+        Asia<span>Technical</span>
       </a>
       <div class="sidebar-toggler not-active">
         <span></span>
@@ -22,16 +22,16 @@
         <li class="nav-item">
           <a class="nav-link" data-bs-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
             <i class="link-icon" data-feather="mail"></i>
-            <span class="link-title">Email</span>
+            <span class="link-title">Courese</span>
             <i class="link-arrow" data-feather="chevron-down"></i>
           </a>
           <div class="collapse" id="emails">
             <ul class="nav sub-menu">
               <li class="nav-item">
-                <a href="pages/email/inbox.html" class="nav-link">Inbox</a>
+                <a href="{{ route('admin.view_category') }}" class="nav-link">Category</a>
               </li>
               <li class="nav-item">
-                <a href="pages/email/read.html" class="nav-link">Read</a>
+                <a href="pages/email/read.html" class="nav-link">Course</a>
               </li>
             </ul>
           </div>

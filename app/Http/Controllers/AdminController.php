@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -112,5 +113,54 @@ class AdminController extends Controller
     }   // end method
 
 
+    ///Category 
+    public function view_category(){
+        $data=Category::all();
 
+        return view('admin.partials.category',compact('data'));
+    }
+
+    public function add_category(Request $request){
+        $category=new Category();
+        $category->category_name = $request->category;
+        $category->save();
+
+        $notification = array(
+            'message' => 'Category Added Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()-> back()->with($notification); 
+    }
+
+    public function edit_category($id){
+        $data=Category::find($id);
+        
+        return view('admin.partials.edit_category',compact('data'));
+    }
+
+    public function update_category(Request $request,$id){
+        $data=Category::find($id);
+        $data->category_name=$request->category;
+        $data->save();
+
+        $notification = array(
+            'message' => 'Category Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.view_category')->with($notification);
+    }
+
+    public function delete_category($id){
+        $data=Category::find($id);
+        $data->delete();
+
+        $notification = array(
+            'message' => 'Category Deleted Successfully',
+            'alert-type' => 'warning'
+        );
+
+        return redirect()-> back()->with($notification);
+    }
 }

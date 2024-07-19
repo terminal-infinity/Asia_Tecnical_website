@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,13 +37,19 @@ require __DIR__.'/auth.php';
 // admin group middleware
 Route::middleware(['auth','role:admin'])->group(function(){
 
-
     Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard');
     Route::get('/admin/logout',[AdminController::class,'AdminLogout'])->name('admin.logout');
     Route::get('/admin/profile',[AdminController::class,'AdminProfile'])->name('admin.profile');
     Route::post('/admin/profile/store',[AdminController::class,'AdminProfileStore'])->name('admin.profile.store');
     Route::get('/admin/change/password',[AdminController::class,'AdminChangePassword'])->name('admin.change.password');
     Route::post('/admin/update/password',[AdminController::class,'AdminUpdatePassword'])->name('admin.update.password');
+
+    //category 
+    Route::get('/admin/view_category', [AdminController::class, 'view_category'])->name('admin.view_category');
+    Route::post('/admin/add_category', [AdminController::class, 'add_category'])->name('admin.add_category');
+    Route::get('/admin/edit_category/{id}', [AdminController::class, 'edit_category'])->name('admin.edit_category');
+    Route::post('/admin/update_category/{id}', [AdminController::class, 'update_category'])->name('admin.update_category');
+    Route::get('/admin/delete_category/{id}', [AdminController::class, 'delete_category'])->name('admin.delete_category');
 
 
 }); // end group admin middleware
@@ -56,5 +63,8 @@ Route::middleware(['auth','role:agent'])->group(function(){
 
 Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.login');
 
+
+
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/about',[HomeController::class,'about'])->name('about');
+Route::get('/courses',[HomeController::class,'courses'])->name('courses');

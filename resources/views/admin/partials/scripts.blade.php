@@ -1,3 +1,4 @@
+
 <!-- core:js -->
 <script src="{{ asset('backend/assets/vendors/core/core.js') }}"></script>
 <!-- endinject -->
