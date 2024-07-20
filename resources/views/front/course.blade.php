@@ -36,7 +36,9 @@
 			<article class="col-lg-4 col-md-6">
 				<div class="post-item">
 					<div class="media-wrapper">
-						<img loading="lazy" src="/course_img/{{$courses->image}}" alt="amazing caves coverimage" class="img-fluid">
+						@if ($courses->image != '')
+						<img loading="lazy" src="/course_img/{{$courses->image}}" alt="amazing caves coverimage" class="img-fluid" width="300" height="332">
+						@endif
 					</div>
 
 					<div class="content">

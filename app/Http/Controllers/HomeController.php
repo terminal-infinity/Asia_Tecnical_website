@@ -10,27 +10,22 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index(){
-        return view('front.home');
+        $latestCourse= Course::orderBy('created_at','DESC')
+                        ->get()
+                        ->take(6);
+
+        return view('front.home',compact('latestCourse'));
     }
 
     public function about(){
         $member=Member::all();
 
-        if(Auth::id()){
-            $user=Auth::user();
-            $user_id=$user->id;
-        }
         return view('front.about',compact('member'));
     }
 
     public function course(){
         $course=Course::all();
-
-        if(Auth::id()){
-            $user=Auth::user();
-            $user_id=$user->id;
-        }
-
+        
         return view('front.course',compact('course'));
     }
 }
