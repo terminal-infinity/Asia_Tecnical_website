@@ -31,7 +31,7 @@
                 <a href="{{ route('admin.view_category') }}" class="nav-link">Category</a>
               </li>
               <li class="nav-item">
-                <a href="pages/email/read.html" class="nav-link">Course</a>
+                <a href="{{ route('admin.view_course') }}" class="nav-link">Course</a>
               </li>
             </ul>
           </div>

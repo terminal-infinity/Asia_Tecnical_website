@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -158,6 +159,89 @@ class AdminController extends Controller
 
         $notification = array(
             'message' => 'Category Deleted Successfully',
+            'alert-type' => 'warning'
+        );
+
+        return redirect()-> back()->with($notification);
+    }
+
+    //Course Functions
+    public function add_course(){
+        $category=Category::all();
+        return view('admin.partials.course',compact('category'));
+    }
+
+    public function upload_course(Request $request){
+        $data=new Course;
+        $data->title = $request->title;
+        $data->description = $request->description;
+        $data->category = $request->category;
+
+        $image=$request->image;
+        if($image){
+            $imagename = time(). '.'. $image->getClientOriginalExtension();
+
+            $request->image->move('course_img',$imagename);
+
+            $data->image= $imagename;
+        }
+        
+        $data->save();
+
+        $notification = array(
+            'message' => 'Course Added Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.view_course')->with($notification); 
+    }
+    public function view_course(){
+        $course=Course::paginate(5);
+        return view('admin.partials.view_coures',compact('course'));
+    }
+
+    public function update_course($id){
+        $data=Course::find($id);
+        $category=Category::all();
+
+        return view('admin.partials.update_course',compact('data','category'));
+    }
+
+    public function edit_course(Request $request,$id){
+        $data=Course::find($id);
+        $data->title=$request->title;
+        $data->description = $request->description;
+        $data->category = $request->category;
+        $image=$request->image;
+        if($image){
+            $imagename = time(). '.'. $image->getClientOriginalExtension();
+
+            $request->image->move('course_img',$imagename);
+
+            $data->image= $imagename;
+        }
+        $data->save();
+
+        $notification = array(
+            'message' => 'Course Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.view_course')->with($notification); 
+    }
+
+    public function delete_course($id){
+        $data=Course::find($id);
+
+        $image_path=public_path('/course_img/ '.$data->image);
+        if(file_exists($image_path)){
+            unlink($image_path);
+        }
+
+        $data->delete();
+
+        $notification = array(
+            'message' => 'Course Deleted Successfully',
             'alert-type' => 'warning'
         );
 

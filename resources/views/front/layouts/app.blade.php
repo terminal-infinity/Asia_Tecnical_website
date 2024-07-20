@@ -80,7 +80,7 @@ Fixed Navigation
             <a class="nav-link" href="{{ route('about') }}">About Us</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="{{ route('courses') }}">Courses</a>
+            <a class="nav-link" href="{{ route('course') }}">Courses</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

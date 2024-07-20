@@ -51,6 +51,14 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::post('/admin/update_category/{id}', [AdminController::class, 'update_category'])->name('admin.update_category');
     Route::get('/admin/delete_category/{id}', [AdminController::class, 'delete_category'])->name('admin.delete_category');
 
+    //Course
+    Route::get('/admin/add_course', [AdminController::class, 'add_course'])->name('admin.add_course');
+    Route::post('/admin/upload_course', [AdminController::class, 'upload_course'])-> name('admin.upload_course');
+    Route::get('/admin/view_course', [AdminController::class, 'view_course'])-> name('admin.view_course');
+    Route::get('/admin/update_course/{id}', [AdminController::class, 'update_course'])-> name('admin.update_course');
+    Route::post('/admin/edit_course/{id}', [AdminController::class, 'edit_course'])-> name('admin.edit_course');
+    Route::get('/admin/delete_course/{id}', [AdminController::class, 'delete_course'])-> name('admin.delete_course');
+
 
 }); // end group admin middleware
 
@@ -67,4 +75,5 @@ Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.lo
 
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/about',[HomeController::class,'about'])->name('about');
-Route::get('/courses',[HomeController::class,'courses'])->name('courses');
+Route::get('/course',[HomeController::class,'course'])->name('course');
+
