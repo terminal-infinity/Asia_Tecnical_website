@@ -108,9 +108,7 @@
 					<!-- section title -->
 					<div class="col-xl-6 col-lg-8">
 						<div class="title text-center ">
-							<h2>Our Team</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque quasi tempora obcaecati, quis
-								similique quos.</p>
+							<h2>Our Management</h2>
 							<div class="border"></div>
 						</div>
 					</div>
@@ -118,98 +116,45 @@
 				</div>
 				<div class="row">
 					<!-- team member -->
+					@foreach ($member as $members)
 					<div class="col-lg-4 col-md-6">
 						<div class="team-member text-center">
 							<div class="member-photo">
 								<!-- member photo -->
-								<img loading="lazy" class="img-fluid" src="images/team/member-1.jpg" alt="Meghna">
+								@if ($members->image != '')
+								<img loading="lazy" class="img-fluid" src="/member_img/{{$members->image}}" width="300" height="332" alt="Meghna">
+								@endif
 								<!-- /member photo -->
 		
 								<!-- member social profile -->
 								<div class="mask">
+									@if ($members->fb_url != '' || $members->tw_url != '' || $members->in_url != '')
 									<ul class="clearfix">
-										<li><a href="https://themefisher.com/"><i class="tf-ion-social-facebook"></i></a></li>
-										<li><a href="https://themefisher.com/"><i class="tf-ion-social-twitter"></i></a></li>
-										<li><a href="https://themefisher.com/"><i class="tf-ion-social-google-outline"></i></a></li>
-										<li><a href="https://themefisher.com/"><i class="tf-ion-social-dribbble"></i></a></li>
+										@if ($members->fb_url != '')
+										<li><a href="{{$members->fb_url}}"><i class="tf-ion-social-facebook"></i></a></li>
+										@endif
+										@if ($members->tw_url != '')
+										<li><a href="{{$members->tw_url}}"><i class="tf-ion-social-twitter"></i></a></li>
+										@endif
+										@if ($members->in_url != '')
+										<li><a href="{{$members->in_url}}"><i class="tf-ion-social-google-outline"></i></a></li>
+										@endif
 									</ul>
+									@endif
 								</div>
 								<!-- /member social profile -->
 							</div>
 		
 							<!-- member name & designation -->
 							<div class="member-content">
-								<h3>Michael Jonson</h3>
-								<span>Head Of Marketing</span>
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur necessitatibus ullam, culpa odio.</p>
+								<h3>{{$members->name}}</h3>
+								<span>{{$members->designation}}</span>
 							</div>
 							<!-- /member name & designation -->
 		
 						</div>
 					</div>
-					<!-- end team member -->
-		
-					<!-- team member -->
-					<div class="col-lg-4 col-md-6">
-						<div class="team-member text-center">
-							<div class="member-photo">
-								<!-- member photo -->
-								<img loading="lazy" class="img-fluid" src="images/team/member-2.jpg" alt="Meghna">
-								<!-- /member photo -->
-		
-								<!-- member social profile -->
-								<div class="mask">
-									<ul class="clearfix">
-										<li><a href="https://themefisher.com/"><i class="tf-ion-social-facebook"></i></a></li>
-										<li><a href="https://themefisher.com/"><i class="tf-ion-social-twitter"></i></a></li>
-										<li><a href="https://themefisher.com/"><i class="tf-ion-social-google-outline"></i></a></li>
-										<li><a href="https://themefisher.com/"><i class="tf-ion-social-dribbble"></i></a></li>
-									</ul>
-								</div>
-								<!-- /member social profile -->
-							</div>
-		
-							<!-- member name & designation -->
-							<div class="member-content">
-								<h3>Carrick Mollenkamp</h3>
-								<span>Web Developer</span>
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur necessitatibus ullam, culpa odio.</p>
-							</div>
-							<!-- /member name & designation -->
-						</div>
-					</div>
-					<!-- end team member -->
-		
-					<!-- team member -->
-					<div class="col-lg-4 col-md-6">
-						<div class="team-member text-center">
-							<div class="member-photo">
-								<!-- member photo -->
-								<img loading="lazy" class="img-fluid" src="images/team/member-3.jpg" alt="Meghna">
-								<!-- /member photo -->
-		
-								<!-- member social profile -->
-								<div class="mask">
-									<ul class="clearfix">
-										<li><a href="https://themefisher.com/"><i class="tf-ion-social-facebook"></i></a></li>
-										<li><a href="https://themefisher.com/"><i class="tf-ion-social-twitter"></i></a></li>
-										<li><a href="https://themefisher.com/"><i class="tf-ion-social-google-outline"></i></a></li>
-										<li><a href="https://themefisher.com/"><i class="tf-ion-social-dribbble"></i></a></li>
-									</ul>
-								</div>
-								<!-- /member social profile -->
-							</div>
-		
-							<!-- member name & designation -->
-							<div class="member-content">
-								<h3>David Gauthier</h3>
-								<span>Head Of Management</span>
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur necessitatibus ullam, culpa odio.</p>
-							</div>
-							<!-- /member name & designation -->
-		
-						</div>
-					</div>
+					@endforeach
 					<!-- end team member -->
 				</div> <!-- End row -->
 			</div> <!-- End container -->

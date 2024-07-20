@@ -35,35 +35,39 @@
     <div class="page-content">
         <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
             <div class="mb-5">
-              <h4 class="mb-3 mb-md-0">View Course</h4>
+              <h4 class="mb-3 mb-md-0">View Members</h4>
             </div>
         </div>
-        <a href="{{ route('admin.add_course') }}" class="btn btn-primary">Add Category</a>
+        <a href="{{ route('admin.add_member') }}" class="btn btn-primary">Add Member</a>
         <div class="page-header">
           <div class="container-fluid">
               <div class="div_deg">
                 <table class="table_deg">
                     <tr>
-                        <th>Course Title</th>
-                        <th>Description</th>
-                        <th>Category</th>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Facebook URL</th>
+                        <th>Linkedin URL</th>
+                        <th>Instragram URL</th>
                         <th>Image</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
-                    @foreach ($course as $courses)
+                    @foreach ($member as $members)
                     <tr>
-                        <td>{{$courses->title}}</td>
-                        <td>{!!Str::limit($courses->description,30)!!}</td>
-                        <td>{{$courses->category}}</td>
+                        <td>{{$members->name}}</td>
+                        <td>{{$members->designation}}</td>
+                        <td>{{$members->fb_url}}</td>
+                        <td>{{$members->tw_url}}</td>
+                        <td>{{$members->in_url}}</td>
                         <td>
-                            <img height="120" width="120" src="/course_img/{{$courses->image}}">
+                            <img height="120" width="120" src="/member_img/{{$members->image}}">
                         </td>
                         <td>
-                            <a class="btn btn-success" href="{{ route('admin.update_course',$courses->id) }}">Edit</a>
+                            <a class="btn btn-success" href="{{ route('admin.update_member',$members->id) }}">Edit</a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="{{ route('admin.delete_course',$courses->id) }}">Delete</a>
+                            <a class="btn btn-danger" href="{{ route('admin.delete_member',$members->id) }}">Delete</a>
                         </td>
                     </tr>
                     @endforeach

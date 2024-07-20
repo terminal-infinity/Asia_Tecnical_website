@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\Member;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -242,6 +243,93 @@ class AdminController extends Controller
 
         $notification = array(
             'message' => 'Course Deleted Successfully',
+            'alert-type' => 'warning'
+        );
+
+        return redirect()-> back()->with($notification);
+    }
+
+
+    //Members Functions
+    public function view_member(){
+        $member=Member::paginate(5);
+        return view('admin.partials.view_member',compact('member'));
+    }
+
+    public function add_member(){
+        return view('admin.partials.add_member');
+    }
+
+    public function upload_member(Request $request){
+        $data=new Member;
+        $data->name = $request->name;
+        $data->designation = $request->designation;
+        $data->fb_url = $request->fb_url;
+        $data->tw_url = $request->tw_url;
+        $data->in_url = $request->in_url;
+
+        $image=$request->image;
+        if($image){
+            $imagename = time(). '.'. $image->getClientOriginalExtension();
+
+            $request->image->move('member_img',$imagename);
+
+            $data->image= $imagename;
+        }
+        
+        $data->save();
+
+        $notification = array(
+            'message' => 'Member Added Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.view_member')->with($notification); 
+    }
+
+    public function update_member($id){
+        $data=Member::find($id);
+
+        return view('admin.partials.update_member',compact('data'));
+    }
+
+    public function edit_member(Request $request,$id){
+        $data=Member::find($id);
+        $data->name = $request->name;
+        $data->designation = $request->designation;
+        $data->fb_url = $request->fb_url;
+        $data->tw_url = $request->tw_url;
+        $data->in_url = $request->in_url;
+        $image=$request->image;
+        if($image){
+            $imagename = time(). '.'. $image->getClientOriginalExtension();
+
+            $request->image->move('member_img',$imagename);
+
+            $data->image= $imagename;
+        }
+        $data->save();
+
+        $notification = array(
+            'message' => 'Course Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.view_member')->with($notification); 
+    }
+
+    public function delete_member($id){
+        $data=Member::find($id);
+
+        $image_path=public_path('/member_img/ '.$data->image);
+        if(file_exists($image_path)){
+            unlink($image_path);
+        }
+
+        $data->delete();
+
+        $notification = array(
+            'message' => 'Member Deleted Successfully',
             'alert-type' => 'warning'
         );
 

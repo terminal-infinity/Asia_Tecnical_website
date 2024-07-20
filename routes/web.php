@@ -59,6 +59,14 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::post('/admin/edit_course/{id}', [AdminController::class, 'edit_course'])-> name('admin.edit_course');
     Route::get('/admin/delete_course/{id}', [AdminController::class, 'delete_course'])-> name('admin.delete_course');
 
+    //Members All Route
+    Route::get('/admin/view_member', [AdminController::class, 'view_member'])-> name('admin.view_member');
+    Route::get('/admin/add_member', [AdminController::class, 'add_member'])->name('admin.add_member');
+    Route::post('/admin/upload_member', [AdminController::class, 'upload_member'])-> name('admin.upload_member');
+    Route::get('/admin/update_member/{id}', [AdminController::class, 'update_member'])-> name('admin.update_member');
+    Route::post('/admin/edit_member/{id}', [AdminController::class, 'edit_member'])-> name('admin.edit_member');
+    Route::get('/admin/delete_member/{id}', [AdminController::class, 'delete_member'])-> name('admin.delete_member');
+
 
 }); // end group admin middleware
 
