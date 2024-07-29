@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Image;
 use App\Models\Member;
 use App\Models\Service;
 use Illuminate\Http\Request;
@@ -23,8 +24,8 @@ class HomeController extends Controller
     public function about(){
         $member=Member::all();
         $latestservice= Service::all();
-
-        return view('front.about',compact('member','latestservice'));
+        $image=Image::all(); 
+        return view('front.about',compact('member','latestservice','image'));
     }
 
     public function course(){

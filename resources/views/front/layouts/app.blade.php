@@ -33,6 +33,9 @@
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
+  
+
+
 </head>
 <body id="body">
 

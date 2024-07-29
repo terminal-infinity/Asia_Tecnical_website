@@ -45,7 +45,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="" class="nav-link">
+          <a href="{{ route('admin.view_image') }}" class="nav-link">
             <i class="link-icon" data-feather="calendar"></i>
             <span class="link-title">Gallary</span>
           </a>

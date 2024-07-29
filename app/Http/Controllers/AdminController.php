@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\Gallary;
+use App\Models\Image;
 use App\Models\Member;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
 
 class AdminController extends Controller
 {
@@ -418,5 +423,52 @@ class AdminController extends Controller
     }
 
 
-   
+    ///Image 
+    public function view_image(){
+        $image=Image::all();
+        return view('admin.partials.image',compact('image'));
+    }
+
+    public function upload_image(Request $request){
+        if($request->file('image')){
+            $takeimage =$request->file('image');
+            // create image manager with desired driver
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()).'.'.$takeimage->getClientOriginalExtension();
+            $img = $manager->read($takeimage);
+            $img = $img->resize(400,300);
+
+            $img->toJpeg(80)->save(base_path('/public/gallary/'.$name_gen));
+
+            $save_url = $name_gen;
+            
+            Image::insert([
+                'image' => $save_url
+            ]);
+        }
+        $notification = array(
+            'message' => 'Image Added Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()-> back()->with($notification); 
+    }
+
+    public function delete_image($id){
+        $data=Image::find($id);
+
+        $image_path=public_path('/gallary/ '.$data->image);
+        if(file_exists($image_path)){
+            unlink($image_path);
+        }
+
+        $data->delete();
+
+        $notification = array(
+            'message' => 'Image Deleted Successfully',
+            'alert-type' => 'warning'
+        );
+
+        return redirect()-> back()->with($notification);
+    }
 }

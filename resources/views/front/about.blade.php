@@ -166,9 +166,6 @@
 			<div class="col-xl-6 col-lg-8">
 				<div class="title text-center">
 					<h2>Sneak Peak Gallery</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore numquam esse vitae recusandae qui
-						aspernatur, blanditiis, laboriosam dignissimos dolore facere provident ex? Porro, praesentium consectetur
-						tempore. Nulla, error eius dolorem.</p>
 						<div class="border"></div>
 				</div>
 			</div>
@@ -176,22 +173,17 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="company-gallery">
-					<img loading="lazy" src="images/company/gallery-1.jpg" alt="">
-					<img loading="lazy" src="images/company/gallery-2.jpg" alt="">
-					<img loading="lazy" src="images/company/gallery-3.jpg" alt="">
-					<img loading="lazy" src="images/company/gallery-4.jpg" alt="">
-					<img loading="lazy" src="images/company/gallery-5.jpg" alt="">
-					<img loading="lazy" src="images/company/gallery-5.jpg" alt="">
-					<img loading="lazy" src="images/company/gallery-1.jpg" alt="">
-					<img loading="lazy" src="images/company/gallery-2.jpg" alt="">
-					<img loading="lazy" src="images/company/gallery-3.jpg" alt="">
-					<img loading="lazy" src="images/company/gallery-4.jpg" alt="">
-					<img loading="lazy" src="images/company/gallery-5.jpg" alt="">
-					<img loading="lazy" src="images/company/gallery-5.jpg" alt="">
+					@foreach ( $image as $img )
+					<img height="400" width="600" loading="lazy" src="/gallary/{{$img->image}}" alt="">
+					@endforeach
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
+
+
+  
 
 @endsection

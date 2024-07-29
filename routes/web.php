@@ -75,8 +75,10 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::post('/admin/edit_service/{id}', [AdminController::class, 'edit_service'])-> name('admin.edit_service');
     Route::get('/admin/delete_service/{id}', [AdminController::class, 'delete_service'])-> name('admin.delete_service');
 
-    
-
+    //Image Gallary
+    Route::get('/admin/view_image', [AdminController::class, 'view_image'])->name('admin.view_image');
+    Route::post('/admin/upload_image', [AdminController::class, 'upload_image'])-> name('admin.upload_image');
+    Route::get('/admin/delete_image/{id}', [AdminController::class, 'delete_image'])-> name('admin.delete_image');
 
 }); // end group admin middleware
 
