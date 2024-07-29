@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\Gallary;
 use App\Models\Member;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +15,6 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
     public function AdminDashboard(){
-
         return view('admin.pages.index');
     } // end method
 
@@ -335,4 +336,87 @@ class AdminController extends Controller
 
         return redirect()-> back()->with($notification);
     }
+
+    //Service Function
+    public function view_service(){
+        $service=Service::paginate(5);
+        return view('admin.partials.view_service',compact('service'));
+    }
+
+    public function add_service(){
+        return view('admin.partials.add_service');
+    }
+
+    public function upload_service(Request $request){
+        $data=new Service();
+        $data->title = $request->title;
+        $data->description = $request->description;
+
+        $image=$request->image;
+        if($image){
+            $imagename = time(). '.'. $image->getClientOriginalExtension();
+
+            $request->image->move('service_img',$imagename);
+
+            $data->image= $imagename;
+        }
+        
+        $data->save();
+
+        $notification = array(
+            'message' => 'Course Added Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.view_service')->with($notification); 
+    }
+
+    public function update_service($id){
+        $data=Service::find($id);
+
+        return view('admin.partials.update_service',compact('data'));
+    }
+
+    public function edit_service(Request $request,$id){
+        $data=Service::find($id);
+        $data->title=$request->title;
+        $data->description = $request->description;
+        $image=$request->image;
+        if($image){
+            $imagename = time(). '.'. $image->getClientOriginalExtension();
+
+            $request->image->move('service_img',$imagename);
+
+            $data->image= $imagename;
+        }
+        $data->save();
+
+        $notification = array(
+            'message' => 'service Updated Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.view_service')->with($notification); 
+    }
+
+    public function delete_service($id){
+        $data=Service::find($id);
+
+        $image_path=public_path('/service_img/ '.$data->image);
+        if(file_exists($image_path)){
+            unlink($image_path);
+        }
+
+        $data->delete();
+
+        $notification = array(
+            'message' => 'service Deleted Successfully',
+            'alert-type' => 'warning'
+        );
+
+        return redirect()-> back()->with($notification);
+    }
+
+
+   
 }

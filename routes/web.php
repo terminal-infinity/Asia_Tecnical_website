@@ -67,6 +67,16 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::post('/admin/edit_member/{id}', [AdminController::class, 'edit_member'])-> name('admin.edit_member');
     Route::get('/admin/delete_member/{id}', [AdminController::class, 'delete_member'])-> name('admin.delete_member');
 
+    //Services Route
+    Route::get('/admin/view_service', [AdminController::class, 'view_service'])-> name('admin.view_service');
+    Route::get('/admin/add_service', [AdminController::class, 'add_service'])->name('admin.add_service');
+    Route::post('/admin/upload_service', [AdminController::class, 'upload_service'])-> name('admin.upload_service');
+    Route::get('/admin/update_service/{id}', [AdminController::class, 'update_service'])-> name('admin.update_service');
+    Route::post('/admin/edit_service/{id}', [AdminController::class, 'edit_service'])-> name('admin.edit_service');
+    Route::get('/admin/delete_service/{id}', [AdminController::class, 'delete_service'])-> name('admin.delete_service');
+
+    
+
 
 }); // end group admin middleware
 
@@ -81,7 +91,11 @@ Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.lo
 
 
 
-Route::get('/',[HomeController::class,'index'])->name('home');
-Route::get('/about',[HomeController::class,'about'])->name('about');
-Route::get('/course',[HomeController::class,'course'])->name('course');
+    Route::get('/',[HomeController::class,'index'])->name('home');
+    Route::get('/about',[HomeController::class,'about'])->name('about');
+    Route::get('/course',[HomeController::class,'course'])->name('course');
+    
+    Route::get('/service_details/{id}', [HomeController::class, 'service_details'])->name('service_details');
+
+
 

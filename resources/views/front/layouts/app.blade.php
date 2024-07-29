@@ -70,10 +70,10 @@ Fixed Navigation
         aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
+      
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="navbar-nav ml-auto text-center">
-          <li class="nav-item dropdown active">
+          <li class="nav-item dropdown">
             <a class="nav-link" href="{{ route('home') }}">Home</a>
           </li>
           <li class="nav-item ">
@@ -82,16 +82,20 @@ Fixed Navigation
           <li class="nav-item ">
             <a class="nav-link" href="{{ route('course') }}">Courses</a>
           </li>
+          
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#!" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Services <i class="tf-ion-chevron-down"></i>
             </a>
+
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="index.html">Homepage</a></li>
-              <li><a class="dropdown-item" href="onepage-slider.html">Onepage</a></li>
-              <li><a class="dropdown-item" href="onepage-text.html">Onepage 2</a></li>
+              @foreach ($latestservice as $services)
+              <li><a class="dropdown-item" href="{{ route('service_details', $services->id ) }}">{{$services->title }}</a></li>
+              @endforeach
             </ul>
           </li>
+
+
           <li class="nav-item ">
             <a class="nav-link" href="notice.html">Notice</a>
           </li>
