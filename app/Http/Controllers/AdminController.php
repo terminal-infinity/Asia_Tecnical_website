@@ -161,8 +161,8 @@ class AdminController extends Controller
     }
 
     public function delete_category($id){
-        $data=Category::find($id);
-        $data->delete();
+            Category::findOrFail($id)->delete();
+
 
         $notification = array(
             'message' => 'Category Deleted Successfully',
@@ -184,13 +184,15 @@ class AdminController extends Controller
         $data->description = $request->description;
         $data->category = $request->category;
 
-        $image=$request->image;
-        if($image){
-            $imagename = time(). '.'. $image->getClientOriginalExtension();
+        if($request->file('image')){
+            $takeimage =$request->file('image');
+            // create image manager with desired driver
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()).'.'.$takeimage->getClientOriginalExtension();
+            $img = $manager->read($takeimage);
+            $img->toJpeg(80)->save(base_path('/public/course_img/'.$name_gen));
 
-            $request->image->move('course_img',$imagename);
-
-            $data->image= $imagename;
+            $data->image = $name_gen;
         }
         
         $data->save();
@@ -219,13 +221,15 @@ class AdminController extends Controller
         $data->title=$request->title;
         $data->description = $request->description;
         $data->category = $request->category;
-        $image=$request->image;
-        if($image){
-            $imagename = time(). '.'. $image->getClientOriginalExtension();
+        if($request->file('image')){
+            $takeimage =$request->file('image');
+            // create image manager with desired driver
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()).'.'.$takeimage->getClientOriginalExtension();
+            $img = $manager->read($takeimage);
+            $img->toJpeg(80)->save(base_path('/public/course_img/'.$name_gen));
 
-            $request->image->move('course_img',$imagename);
-
-            $data->image= $imagename;
+            $data->image = $name_gen;
         }
         $data->save();
 
@@ -238,7 +242,7 @@ class AdminController extends Controller
     }
 
     public function delete_course($id){
-        $data=Course::find($id);
+        $data=Course::findOrFail($id);
 
         $image_path=public_path('/course_img/ '.$data->image);
         if(file_exists($image_path)){
@@ -274,14 +278,19 @@ class AdminController extends Controller
         $data->tw_url = $request->tw_url;
         $data->in_url = $request->in_url;
 
-        $image=$request->image;
-        if($image){
-            $imagename = time(). '.'. $image->getClientOriginalExtension();
+        if($request->file('image')){
+            $takeimage =$request->file('image');
+            // create image manager with desired driver
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()).'.'.$takeimage->getClientOriginalExtension();
+            $img = $manager->read($takeimage);
 
-            $request->image->move('member_img',$imagename);
 
-            $data->image= $imagename;
+            $img->toJpeg(80)->save(base_path('/public/member_img/'.$name_gen));
+
+            $data->image = $name_gen;
         }
+        
         
         $data->save();
 
@@ -306,13 +315,17 @@ class AdminController extends Controller
         $data->fb_url = $request->fb_url;
         $data->tw_url = $request->tw_url;
         $data->in_url = $request->in_url;
-        $image=$request->image;
-        if($image){
-            $imagename = time(). '.'. $image->getClientOriginalExtension();
+        if($request->file('image')){
+            $takeimage =$request->file('image');
+            // create image manager with desired driver
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()).'.'.$takeimage->getClientOriginalExtension();
+            $img = $manager->read($takeimage);
 
-            $request->image->move('member_img',$imagename);
 
-            $data->image= $imagename;
+            $img->toJpeg(80)->save(base_path('/public/member_img/'.$name_gen));
+
+            $data->image = $name_gen;
         }
         $data->save();
 
@@ -325,8 +338,7 @@ class AdminController extends Controller
     }
 
     public function delete_member($id){
-        $data=Member::find($id);
-
+        $data=Member::findOrFail($id);
         $image_path=public_path('/member_img/ '.$data->image);
         if(file_exists($image_path)){
             unlink($image_path);
@@ -357,13 +369,15 @@ class AdminController extends Controller
         $data->title = $request->title;
         $data->description = $request->description;
 
-        $image=$request->image;
-        if($image){
-            $imagename = time(). '.'. $image->getClientOriginalExtension();
+        if($request->file('image')){
+            $takeimage =$request->file('image');
+            // create image manager with desired driver
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()).'.'.$takeimage->getClientOriginalExtension();
+            $img = $manager->read($takeimage);
+            $img->toJpeg(80)->save(base_path('/public/service_img/'.$name_gen));
 
-            $request->image->move('service_img',$imagename);
-
-            $data->image= $imagename;
+            $data->image = $name_gen;
         }
         
         $data->save();
@@ -386,13 +400,15 @@ class AdminController extends Controller
         $data=Service::find($id);
         $data->title=$request->title;
         $data->description = $request->description;
-        $image=$request->image;
-        if($image){
-            $imagename = time(). '.'. $image->getClientOriginalExtension();
+        if($request->file('image')){
+            $takeimage =$request->file('image');
+            // create image manager with desired driver
+            $manager = new ImageManager(new Driver());
+            $name_gen = hexdec(uniqid()).'.'.$takeimage->getClientOriginalExtension();
+            $img = $manager->read($takeimage);
+            $img->toJpeg(80)->save(base_path('/public/service_img/'.$name_gen));
 
-            $request->image->move('service_img',$imagename);
-
-            $data->image= $imagename;
+            $data->image = $name_gen;
         }
         $data->save();
 
@@ -405,7 +421,7 @@ class AdminController extends Controller
     }
 
     public function delete_service($id){
-        $data=Service::find($id);
+        $data=Service::findOrFail($id);
 
         $image_path=public_path('/service_img/ '.$data->image);
         if(file_exists($image_path)){
@@ -455,7 +471,7 @@ class AdminController extends Controller
     }
 
     public function delete_image($id){
-        $data=Image::find($id);
+        $data=Image::findOrFail($id);
 
         $image_path=public_path('/gallary/ '.$data->image);
         if(file_exists($image_path)){

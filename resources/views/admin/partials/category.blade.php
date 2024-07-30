@@ -12,25 +12,25 @@
         align-items: center;
         margin: 30px;
     }
-    .table_deg{
-      text-align: center;
-      margin: auto;
-      border: 2px solid rgba(110, 68, 165, 0.767);
-      margin-top: 50px;
-      width: 800px;
+    .container {
+        padding: 2rem 0rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    th{
-      background-color: rgba(110, 68, 165, 0.767);
-      padding: 15px;
-      font-size: 20px;
-      font-weight: bold;
-      color: white;
-    }
-    td{
-      color: white;
-      padding: 10px;
-      border: 1px solid rgba(110, 68, 165, 0.767);
-    }
+
+h4 {
+  margin: 2rem 0rem 1rem;
+}
+
+.table-image {
+  td, th {
+        vertical-align: middle;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 5rem;
+  }
+}
 </style>
 <!-- Sidebar Navigation end-->
 <div class="page-content">
@@ -52,26 +52,35 @@
       </form>
       </div>
 
-      <div>
-        <table class="table_deg">
-          <tr>
-            <th>Category Name</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-          @foreach ( $data as $data )
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+          <table class="table table-image table-hover">
+            <thead>
               <tr>
-                <td>{{$data->category_name}}</td>
+                <th scope="col">Category Name</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach ( $data as $data )
+              <tr>
+                <td scope="row">{{$data->category_name}}</td>
                 <td>
                   <a class="btn btn-success" href="{{route('admin.edit_category',$data->id)}}">Edit</a>
                 </td>
                 <td>
-                  <a class="btn btn-danger"  href="{{route('admin.delete_category',$data->id)}}">Delete</a>
+                  <a class="btn btn-danger"  href="{{route('admin.delete_category',$data->id)}}" id="delete">Delete</a>
                 </td>
               </tr>
               @endforeach
-        </table>
+            </tbody>
+          </table>   
+          </div>
+        </div>
       </div>
+      
       
       </div> 
   </div>

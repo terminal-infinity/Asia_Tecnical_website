@@ -73,7 +73,7 @@ h4 {
                   <img height="120" width="120" src="/gallary/{{$img->image}}" alt="">
                 </td>
                 <td>
-                  <a class="btn btn-danger"  href="{{ route('admin.delete_image',$img->id) }}">Delete</a>
+                  <a class="btn btn-danger"  href="{{ route('admin.delete_image',$img->id) }}" id="delete">Delete</a>
                 </td>
               </tr>
               @endforeach

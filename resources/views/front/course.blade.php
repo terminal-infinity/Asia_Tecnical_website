@@ -37,7 +37,7 @@
 				<div class="post-item">
 					<div class="media-wrapper">
 						@if ($courses->image != '')
-						<img loading="lazy" src="/course_img/{{$courses->image}}" alt="amazing caves coverimage" class="img-fluid" width="300" height="332">
+						<img src="/course_img/{{$courses->image}}" alt="" class="img-fluid">
 						@endif
 					</div>
 

@@ -9,26 +9,24 @@
         align-items: center;
         margin-top: 60px;
     }
-    .table_deg{
-        border: 2px solid lightblue;
+    .container {
+        padding: 2rem 0rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    th{
-        background-color: lightseagreen;
-        color: white;
-        font-size: 19px;
-        font-weight: bold;
-        padding: 15px;
-    }
-    td{
-        border: 2px solid lightblue;
-        text-align: center;
-        color: white;
-    }
-    input[type='search']{
-        width: 500px;
-        height: 50px;
-        margin-left: 50px;
-    }
+
+h4 {
+  margin: 2rem 0rem 1rem;
+}
+
+.table-image {
+  td, th {
+        vertical-align: middle;
+        justify-content: center;
+        align-items: center;
+  }
+}
 </style>
 <!-- Sidebar Navigation end-->
 <section>
@@ -39,37 +37,41 @@
             </div>
         </div>
         <a href="{{ route('admin.add_service') }}" class="btn btn-primary">Add Service</a>
-        <div class="page-header">
-          <div class="container-fluid">
-              <div class="div_deg">
-                <table class="table_deg">
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Image</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
+
+        <div class="container">
+            <div class="row">
+              <div class="col-12">
+              <table class="table table-image table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
                     @foreach ($service as $services)
-                    <tr>
-                        <td>{{$services->title}}</td>
-                        <td>{!!Str::limit($services->description,50)!!}</td>
-                        <td>
-                            <img height="120" width="120" src="/service_img/{{$services->image}}">
-                        </td>
-                        <td>
-                            <a class="btn btn-success" href="{{ route('admin.delete_service',$services->id) }}">Edit</a>
-                        </td>
-                        <td>
-                            <a class="btn btn-danger" href="{{ route('admin.delete_service',$services->id) }}">Delete</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </table>
-                
+                  <tr>
+                    <td scope="row">{{$services->title}}</td>
+                    <td scope="row">{!!Str::limit($services->description,50)!!}</td>
+                    <td>
+                        <img height="120" width="120" src="/service_img/{{$services->image}}">
+                    </td>
+                    <td>
+                        <a class="btn btn-success" href="{{ route('admin.update_service',$services->id) }}">Edit</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-danger" href="{{ route('admin.delete_service',$services->id) }}" id="delete">Delete</a>
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>   
+              </div>
+            </div>
           </div>
-          </div> 
-          
     </div>
 </section>
 

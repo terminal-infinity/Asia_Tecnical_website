@@ -9,26 +9,24 @@
         align-items: center;
         margin-top: 60px;
     }
-    .table_deg{
-        border: 2px solid lightblue;
+    .container {
+        padding: 2rem 0rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-    th{
-        background-color: lightseagreen;
-        color: white;
-        font-size: 19px;
-        font-weight: bold;
-        padding: 15px;
-    }
-    td{
-        border: 2px solid lightblue;
-        text-align: center;
-        color: white;
-    }
-    input[type='search']{
-        width: 500px;
-        height: 50px;
-        margin-left: 50px;
-    }
+
+h4 {
+  margin: 2rem 0rem 1rem;
+}
+
+.table-image {
+  td, th {
+        vertical-align: middle;
+        justify-content: center;
+        align-items: center;
+  }
+}
 </style>
 <!-- Sidebar Navigation end-->
 <section>
@@ -39,44 +37,48 @@
             </div>
         </div>
         <a href="{{ route('admin.add_member') }}" class="btn btn-primary">Add Member</a>
-        <div class="page-header">
-          <div class="container-fluid">
-              <div class="div_deg">
-                <table class="table_deg">
-                    <tr>
-                        <th>Name</th>
-                        <th>Designation</th>
-                        <th>Facebook URL</th>
-                        <th>Linkedin URL</th>
-                        <th>Instragram URL</th>
-                        <th>Image</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                    @foreach ($member as $members)
-                    <tr>
-                        <td>{{$members->name}}</td>
-                        <td>{{$members->designation}}</td>
-                        <td>{{$members->fb_url}}</td>
-                        <td>{{$members->tw_url}}</td>
-                        <td>{{$members->in_url}}</td>
-                        <td>
-                            <img height="120" width="120" src="/member_img/{{$members->image}}">
+
+        <div class="container">
+                <div class="row">
+                  <div class="col-12">
+                  <table class="table table-image table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Designation</th>
+                        <th scope="col">Facebook URL</th>
+                        <th scope="col">Linkedin URL</th>
+                        <th scope="col">Instragram URL</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($member as $members)
+                      <tr>
+                        <td scope="row">{{$members->name}}</td>
+                        <td scope="row">{{$members->designation}}</td>
+                        <td scope="row">{{$members->fb_url}}</td>
+                        <td scope="row">{{$members->tw_url}}</td>
+                        <td scope="row">{{$members->in_url}}</td>
+                        <td class="w-25">
+                          <img height="120" width="120" src="/member_img/{{$members->image}}" alt="">
                         </td>
                         <td>
                             <a class="btn btn-success" href="{{ route('admin.update_member',$members->id) }}">Edit</a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="{{ route('admin.delete_member',$members->id) }}">Delete</a>
+                            <a class="btn btn-danger" href="{{ route('admin.delete_member',$members->id) }}" id="delete">Delete</a>
                         </td>
-                    </tr>
-                    @endforeach
-                </table>
-                
-          </div>
-          </div> 
-          
-    </div>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>   
+                  </div>
+                </div>
+              </div>
+    </div> 
 </section>
 
 
