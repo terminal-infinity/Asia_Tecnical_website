@@ -18,6 +18,17 @@
 	</div>
 </div>
 
+<div class="notice_div">
+	<marquee width="100%" direction="left" height="30px" >
+		@foreach ($document as $data)
+		<a href="{{ route('admin.download',$data->id) }}">
+			<i class="fa-solid fa-hashtag"></i>
+			{{$data->title}}
+		</a>
+		@endforeach
+	</marquee>
+</div>
+
 <section class="about-shot-info section-sm">
 	<div class="container">
 		<div class="row">

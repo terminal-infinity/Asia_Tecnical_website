@@ -713,7 +713,19 @@ a:hover {
   right: 20px;
 }
 
-
+.notice_div{
+  margin: 2px;
+}
+.notice_div marquee{
+  background: #226fd3;
+}
+.notice_div marquee a{
+  color: #fff;
+  font-size: large;
+}
+.notice_div marquee a:hover{
+  color: #5e0e0e;
+}
 
 
 

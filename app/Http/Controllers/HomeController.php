@@ -18,8 +18,12 @@ class HomeController extends Controller
                         ->take(6);
         
         $latestservice= Service::all();
+
+        $document =Notice::orderBy('created_at','DESC')
+                    ->get()
+                    ->take(5);
         
-        return view('front.home',compact('latestCourse','latestservice'));
+        return view('front.home',compact('latestCourse','latestservice','document'));
     }
 
     public function about(){
