@@ -16,17 +16,17 @@
         align-items: center;
     }
 
-h4 {
-  margin: 2rem 0rem 1rem;
-}
+    h4 {
+        margin: 2rem 0rem 1rem;
+    }
 
-.table-image {
-  td, th {
-        vertical-align: middle;
-        justify-content: center;
-        align-items: center;
-  }
-}
+    .table-image {
+        td, th {
+            vertical-align: middle;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 </style>
 <!-- Sidebar Navigation end-->
 <section>

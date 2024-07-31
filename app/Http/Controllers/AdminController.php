@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\Gallary;
 use App\Models\Image;
 use App\Models\Member;
+use App\Models\Notice;
 use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Facades\Storage;
+
 
 
 class AdminController extends Controller
@@ -487,4 +490,69 @@ class AdminController extends Controller
 
         return redirect()-> back()->with($notification);
     }
+
+    ///notice 
+    public function view_notice(){
+        $doc=Notice::all();
+        return view('admin.partials.view_notice', compact('doc'));
+    }
+
+    public function upload_notice(Request $request){
+        $request->validate([
+            'document' => 'required|mimes:pdf,doc,docx',
+        ]);
+        $file = $request->file('document');
+        $fileName = time().'_'.$file->getClientOriginalName();
+        $file->storeAs('documents',$fileName,'public');
+
+        $doc = new Notice;
+        $doc->file =$fileName;
+        $doc->title =$request->title;
+        $doc->save();
+
+        $notification = array(
+            'message' => 'Notice Added Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+        
+    }
+
+    public function download($id){
+        $document = Notice::find($id);
+
+        $file_path=storage_path("app/public/documents/{$document->file}");
+
+    return response()->download($file_path, $document->title);
+        
+    }
+
+    public function view($id){
+        $document = Notice::find($id);
+
+        $file_path=storage_path("app/public/documents/{$document->file}");
+
+    return response()->file($file_path, $document->title);
+        
+    }
+
+    public function delete_notice($id){
+        $data=Notice::findOrFail($id);
+
+        $file_path=public_path('notice_pdf/ '.$data->file);
+        if(file_exists($file_path)){
+            unlink($file_path);
+        }
+
+        $data->delete();
+
+        $notification = array(
+            'message' => 'Image Deleted Successfully',
+            'alert-type' => 'warning'
+        );
+
+        return redirect()-> back()->with($notification);
+    }
+
 }

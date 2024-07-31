@@ -80,6 +80,12 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::post('/admin/upload_image', [AdminController::class, 'upload_image'])-> name('admin.upload_image');
     Route::get('/admin/delete_image/{id}', [AdminController::class, 'delete_image'])-> name('admin.delete_image');
 
+    //Notice
+    Route::get('/admin/view_notice', [AdminController::class, 'view_notice'])->name('admin.view_notice');
+    Route::post('/admin/upload_notice', [AdminController::class, 'upload_notice'])-> name('admin.upload_notice');
+    Route::get('/admin/download/{id}',[AdminController::class, 'download'])->name('admin.download');
+    Route::get('/admin/view/{id}',[AdminController::class, 'view'])->name('admin.view');
+    Route::get('/admin/delete_notice/{id}', [AdminController::class, 'delete_notice'])-> name('admin.delete_notice');
 }); // end group admin middleware
 
 
@@ -96,8 +102,7 @@ Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.lo
     Route::get('/',[HomeController::class,'index'])->name('home');
     Route::get('/about',[HomeController::class,'about'])->name('about');
     Route::get('/course',[HomeController::class,'course'])->name('course');
-    
     Route::get('/service_details/{id}', [HomeController::class, 'service_details'])->name('service_details');
-
+    Route::get('/notice',[HomeController::class,'notice'])->name('notice');
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Image;
 use App\Models\Member;
+use App\Models\Notice;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,12 +36,18 @@ class HomeController extends Controller
         return view('front.course',compact('course','latestservice'));
     }
 
-    
 
     public function service_details($id){
         $service=Service::find($id);
         $latestservice= Service::orderBy('created_at','ASC')
                         ->get();
         return view('front.service_details',compact('service','latestservice'));
+    }
+
+    public function notice(){
+        $latestservice= Service::all();
+        $document =Notice::orderBy('created_at','DESC')->get();
+
+        return view('front.notice',compact('latestservice','document'));
     }
 }

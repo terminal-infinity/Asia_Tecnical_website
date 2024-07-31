@@ -6,10 +6,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h2>About Us</h2>
+				<h2>Courses</h2>
 				<ol class="breadcrumb header-bradcrumb justify-content-center">
 					<li class="breadcrumb-item"><a href="index.html" class="text-white">Home</a></li>
-					<li class="breadcrumb-item active" aria-current="page">About Us</li>
+					<li class="breadcrumb-item active" aria-current="page">Courses</li>
 				</ol>
 			</div>
 		</div>

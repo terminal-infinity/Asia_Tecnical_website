@@ -58,6 +58,13 @@
           </a>
         </li>
 
+        <li class="nav-item">
+          <a href="{{ route('admin.view_notice') }}" class="nav-link">
+            <i class="link-icon" data-feather="calendar"></i>
+            <span class="link-title">Notice</span>
+          </a>
+        </li>
+
         <li class="nav-item nav-category">Web</li>
         
         <li class="nav-item">
