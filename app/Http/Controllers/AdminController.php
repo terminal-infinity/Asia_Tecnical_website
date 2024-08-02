@@ -476,7 +476,7 @@ class AdminController extends Controller
     public function delete_image($id){
         $data=Image::findOrFail($id);
 
-        $image_path=public_path('/gallary/ '.$data->image);
+        $image_path=public_path('/public/gallary/'.$data->image);
         if(file_exists($image_path)){
             unlink($image_path);
         }

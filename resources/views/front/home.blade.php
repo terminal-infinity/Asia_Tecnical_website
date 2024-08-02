@@ -29,6 +29,8 @@
 	</marquee>
 </div>
 
+
+
 <section class="about-shot-info section-sm">
 	<div class="container">
 		<div class="row">
@@ -48,6 +50,26 @@
 		</div>
 	</div>
 </section>
+
+<div class="container">
+	<div class="logo_title">
+		<center><h3>Our Partners</h3></center>
+	</div>
+	
+	<div class="logos">
+		<div class="logo_items">
+			@foreach ($approvedLogo as $img)
+		    <img src="/logoImage/{{ $img->images }}">
+			@endforeach
+		</div>
+		<div class="logo_items">
+			@foreach ($approvedLogo as $img)
+		    <img src="/logoImage/{{ $img->images }}">
+			@endforeach
+		</div>
+	</div>
+</div>
+
 
 <section class="blog" id="blog">
 	<div class="container">
@@ -83,5 +105,7 @@
 		</div> <!-- end row -->
 	</div> <!-- end container -->
 </section>
+
+
 
 @endsection

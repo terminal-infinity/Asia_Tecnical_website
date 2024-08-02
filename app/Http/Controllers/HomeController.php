@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ApprovedBy;
 use App\Models\Course;
 use App\Models\Image;
 use App\Models\Member;
@@ -22,8 +23,10 @@ class HomeController extends Controller
         $document =Notice::orderBy('created_at','DESC')
                     ->get()
                     ->take(5);
+
+        $approvedLogo= ApprovedBy::all();
         
-        return view('front.home',compact('latestCourse','latestservice','document'));
+        return view('front.home',compact('latestCourse','latestservice','document','approvedLogo'));
     }
 
     public function about(){

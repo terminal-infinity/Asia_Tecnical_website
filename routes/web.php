@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
@@ -86,6 +87,13 @@ Route::middleware(['auth','role:admin'])->group(function(){
     Route::get('/admin/download/{id}',[AdminController::class, 'download'])->name('admin.download');
     Route::get('/admin/view/{id}',[AdminController::class, 'view'])->name('admin.view');
     Route::get('/admin/delete_notice/{id}', [AdminController::class, 'delete_notice'])-> name('admin.delete_notice');
+
+    //approved_by
+    Route::get('/admin/approved_by', [PartnerController::class, 'approved_by'])->name('admin.approved_by');
+    Route::post('/admin/upload_approvedBy', [PartnerController::class, 'upload_approvedBy'])-> name('admin.upload_approvedBy');
+    Route::get('/admin/delete_approvedByImg/{id}', [PartnerController::class, 'delete_approvedByImg'])-> name('admin.delete_approvedByImg');
+
+
 }); // end group admin middleware
 
 
