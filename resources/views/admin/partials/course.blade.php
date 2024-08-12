@@ -18,7 +18,7 @@
                 @csrf
                 <div class="mb-3">
                     <label class="form-label">Course Title</label>
-                    <input  type="text" name="title" class="form-control" >
+                    <input  type="text" name="title" class="form-control" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Description</label>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Course Category</label>
-                    <select name="category" required>
+                    <select name="category">
                         <option class="form-control">Select a Option</option>
                         @foreach ($category as $category)
                             <option class="form-control" value="{{$category->category_name}}">{{$category->category_name}}

@@ -112,5 +112,6 @@ Route::get('/admin/login',[AdminController::class,'AdminLogin'])->name('admin.lo
     Route::get('/course',[HomeController::class,'course'])->name('course');
     Route::get('/service_details/{id}', [HomeController::class, 'service_details'])->name('service_details');
     Route::get('/notice',[HomeController::class,'notice'])->name('notice');
+    Route::get('/contact',[HomeController::class,'contact'])->name('contact');
 
 

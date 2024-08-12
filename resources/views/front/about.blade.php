@@ -182,8 +182,4 @@
 	</div>
 </section>
 
-
-
-  
-
 @endsection

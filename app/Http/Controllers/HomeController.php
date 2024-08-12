@@ -57,4 +57,11 @@ class HomeController extends Controller
 
         return view('front.notice',compact('latestservice','document'));
     }
+
+    public function contact(){
+
+        $latestservice= Service::all();
+
+        return view('front.contact',compact('latestservice'));
+    }
 }

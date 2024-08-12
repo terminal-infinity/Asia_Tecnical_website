@@ -103,7 +103,7 @@ Fixed Navigation
             <a class="nav-link" href="{{ route('notice') }}">Notice</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
           </li>
 
           @if (Route::has('login'))
@@ -150,10 +150,9 @@ Fixed Navigation
               <li>
                 <h3>Our Services</h3>
               </li>
-              <li><a href="service.html">Ui/Ux Design</a></li>
-              <li><a href="service.html">Graphic Design</a></li>
-              <li><a href="service.html">Web Design</a></li>
-              <li><a href="service.html">Web Development</a></li>
+              @foreach ($latestservice as $services)
+              <li><a href="{{ route('service_details', $services->id ) }}">{{$services->title }}</a></li>
+              @endforeach
             </ul>
           </div>
           <!-- End of .col-sm-3 -->
@@ -163,10 +162,11 @@ Fixed Navigation
               <li>
                 <h3>Quick Links</h3>
               </li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="service.html">Services</a></li>
-              <li><a href="blog.html">Blogs</a></li>
-              <li><a href="404.html">404</a></li>
+              <li><a href="{{ route('home') }}">Home</a></li>
+              <li><a href="{{ route('about') }}">About</a></li>
+              <li><a href="{{ route('notice') }}">Notice</a></li>
+              <li><a href="{{ route('course') }}">Courses</a></li>
+              <li><a href="{{ route('contact') }}">Contact</a></li>
             </ul>
           </div>
           <!-- End of .col-sm-3 -->
@@ -176,10 +176,9 @@ Fixed Navigation
               <li>
                 <h3>Connect with us Socially</h3>
               </li>
-              <li><a href="https://www.facebook.com/themefisher/">Facebook</a></li>
-              <li><a href="https://www.twitter.com/themefisher/">Twitter</a></li>
-              <li><a href="https://www.youtube.com/channel/UCx9qVW8VF0LmTi4OF2F8YdA">Youtube</a></li>
-              <li><a href="https://www.github.com/themefisher/">Github</a></li>
+              <li><a href="">Facebook</a></li>
+              <li><a href="">Twitter</a></li>
+              <li><a href="">Instragram</a></li>
             </ul>
           </div>
           <!-- End of .col-sm-3 -->
@@ -188,8 +187,8 @@ Fixed Navigation
       </div> <!-- end container -->
     </div>
     <div class="footer-bottom">
-      <h5>&copy; Copyright 2020. All rights reserved.</h5>
-      <h6>Design and Developed by <a href="https://themefisher.com/">Themefisher</a></h6>
+      <h5>&copy; Copyright 2024. All rights reserved.</h5>
+      <h6>Design and Developed by <a href="">Nur Jannat</a></h6>
     </div>
   </footer> <!-- end footer -->
   

@@ -45,8 +45,7 @@ h4 {
       <form action="{{ route('admin.add_category') }}" method="post">
         @csrf
         <div>
-            <input type="text" name="category">
-        
+            <input type="text" name="category" required>
             <input class="btn btn-primary" type="submit" value="Add Category">
         </div>
       </form>

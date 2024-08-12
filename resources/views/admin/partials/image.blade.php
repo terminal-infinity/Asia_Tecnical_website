@@ -1,90 +1,62 @@
+
 @extends('admin.admin_dashboard')
 
 @section('content')
-<style type="text/css">
-    input[type='file']{
-        width: 500px;
-        height: 30px;
-        background: #1e2236;
-        margin: 5px;
-    }
-    .div_deg{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 30px;
-    }
-    .container {
-        padding: 2rem 0rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+<style>
+    h4 {
+        margin: 2rem 0rem 1rem;
     }
 
-h4 {
-  margin: 2rem 0rem 1rem;
-}
-
-.table-image {
-  td, th {
-        vertical-align: middle;
-        justify-content: center;
-        align-items: center;
-        padding: 1rem 5rem;
-  }
-}
+    .table-image {
+        td, th {
+            vertical-align: middle;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 </style>
 <!-- Sidebar Navigation end-->
-<div class="page-content">
-    <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
-        <div class="mb-5">
-          <h4 class="mb-3 mb-md-0">Add Images</h4>
+<section>
+    <div class="page-content">
+        <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+            <div class="mb-5">
+              <h4 class="mb-3 mb-md-0">All Notices</h4>
+            </div>
         </div>
-    </div>
-    <div class="page-header">
-      <div class="container-fluid">
-      <div class="div_deg">
-      <form action="{{ route('admin.upload_image') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        <div>
-            <input type="file" name="image">
-        
-            <input class="btn btn-primary" type="submit" value="Add Image">
-        </div>
-      </form>
-      </div>
 
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-          <table class="table table-image table-hover">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Image</th>
-                <th scope="col">Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach ( $image as $img )
-              <tr>
-                <td scope="row">{{$img->id}}</td>
-                <td class="w-25">
-                  <img height="120" width="120" src="/gallary/{{$img->image}}" alt="">
-                </td>
-                <td>
-                  <a class="btn btn-danger"  href="{{ route('admin.delete_image',$img->id) }}" id="delete">Delete</a>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>   
+        <div class="col-md-7 col-xl-12 middle-wrapper">
+            <div class="row">
+             <div class="card">
+            <div class="card-body">
+                <form class="forms-sample" action="{{ route('admin.upload_image') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label">Images</label>
+                        <input type="file" class="form-control" name="image" required>
+                    </div>
+                    <input class="btn btn-success" type="submit" value="Add Image" >
+                </form>
+            </div>
           </div>
         </div>
-      </div>
-      
-      </div> 
-  </div>
-</div>
 
+
+        <div class="m-5">
+            <div class="row">
+                <h2 class="m-4 ">Images</h2>
+                <div class="mb-5">
+                  @foreach ( $image as $img )
+                  
+                    <img width="150px" src="/gallary/{{$img->image}}" >
+                    <a class="btn btn-danger" href="{{ route('admin.delete_image',$img->id) }}" id="delete">Delete</a>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        
+        
+
+    </div>
+</section>
 @endsection

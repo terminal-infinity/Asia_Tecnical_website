@@ -44,7 +44,7 @@
 						<th scope="row">{{$data->id}}</th>
 						<td>{{$data->title}}</td>
 						<td>
-							<a class="btn btn-danger" href="{{ route('admin.download',$data->id) }}">Download
+							<a class="btn btn-danger" href="{{ route('admin.download',$data->id) }}">View
 								<i class="fa-solid fa-file-pdf" ></i>
 							</a>
 						</td>
